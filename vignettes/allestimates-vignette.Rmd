@@ -1,0 +1,100 @@
+---
+title: "allestimates-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{allestimates-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Overview
+
+Calculates effect estimates from models with all possible combinations of variables. Effect estimates here can be regression coefficients, odds ratios and hazard ratios depending on modeling methods. This approach can be used for assessing the treatment effects in clinical trials or the effects of risk factors in observational biomedical and epidemiological studies.
+
+## Installation
+
+You can install the released version of **`allestimates`** from [CRAN](https://CRAN.R-project.org) with:
+
+```{r, eval=FALSE}
+install.packages("allestimates")
+```
+
+## Getting Started
+
+```{r setup}
+library(allestimates)
+```
+
+## Calculate hazard ratios from all possible models using **`all_cox`**
+
+Run Cox Proportional Hazards Regression Models with all possible combinations of variables specified in the argument of `xlist` using `coxph` from `survival` package. 
+
+```{r, coxhp_result}
+vlist <- c("Age", "Sex", "Smoke", "Married", "BMI", "Income")
+results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
+results
+```
+
+All hazard ratio estimates are stored in the object `results` which can be used for further analysis and graphic presentation. 
+
+## Plot all hazard ratios against p values using **`all_plot`**
+`all_plot` quickly presents all hazard ratio (effect) estimates in the graph divided into four parts (quarters). 
+```{r, cox_plot, fig.height=2.5, fig.width = 4}
+all_plot(results)
+```
+
+In this example, all hazard ratio estimates are in the left-upper quarter of the graph, indicating a positive association between `Diabetes` and `Endpoint`. 
+
+## Plot all hazard ratios with a specific variable included or not included in model using **`all_plot2`**
+```{r, cox_plot2, fig.height=4, fig.width = 7}
+all_plot2(results)
+```
+
+Plot hazard ratios (effect estimates) indicating whether each of those variables included and not included in the model.  
+
+## Calculate odds ratios from all possible models using **`all_glm`** or **`all_speedglm`**
+`all_speedglm` calling `speedglm` is a faster alternative of `all_glm` which calls `glm`. By default, those functions run logistic regressions to calculate odds ratios.   
+
+```{r, speedglm_plot, fig.height=2.5, fig.width = 4}
+diab_df$Overweight = as.numeric(diab_df$BMI >= 25)
+vlist <- c("Age", "Sex", "Education","Married", "BMI", "Income")
+results <- all_speedglm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
+all_plot(results)
+```
+```{r, speedglm_plot2, fig.height=4, fig.width = 7}
+all_plot2(results)
+```
+
+In this example, odds ratio estimates appeared in two upper quarters, a positive association with alpha levels less than 0.05 in some models (left-upper) and higher than 0.05 in others. Since different models produce conflicting results, inspecting `all_plot2` can be helpful in combination with biological background knowledge. As we can see the above plot, estimates were in the right-hand side of the vertical line when `BMI` was included in models. In this case, including `BMI` when assessing the association between `Overweight` and `Diabetes` can be problematic because `Overweight` was determined based on `BMI`. 
+
+```{r, speedglm_plot_aic2, fig.height=4, fig.width = 7}
+all_plot_aic2(results)
+```
+
+## Calculate coefficients (differences) from all possible models using **`all_lm`**
+
+`all_lm` fits Linear Regression Models with all possible combinations of variables specified in the argument of `xlist` using `lm` from `stats` package. 
+
+```{r, lm_plot, fig.height=2.5, fig.width = 4}
+vlist <- c("Age", "Sex", "Education", "Income", "Diabetes", "Smoke")
+results <- all_lm(crude = "BMI ~ Married", xlist = vlist, data = diab_df)
+all_plot(results)
+```
+```{r, lm_plot2, fig.height=4, fig.width = 7}
+all_plot2(results)
+```
+
+All estimates are in the right-hand side of the vertical line. The results does not support an association between the marital status `Married` and `BMI`.
+
+***Note:*** If you want to add non-linear terms or interaction terms, generate those terms as variables first and add them to the argument of `xlist`. 
+
