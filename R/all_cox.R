@@ -28,7 +28,7 @@ all_cox <- function(crude, xlist, data, na_omit = TRUE, ...) {
     data <- na.omit(data)
   }
   mod_0 <- survival::coxph(as.formula(crude), ..., data = data)
-  m0 <- broom::tidy(mod_0, exponentiate = TRUE)
+  m0 <- broom::tidy(mod_0, exponentiate = TRUE, conf.int = TRUE)
   p <- m0$p.value[1]
   estimate <- m0$estimate[1]
   conf_low <- m0$conf.low[1]

@@ -1,7 +1,7 @@
-db353d12c72374cd8338d111ad494c84 *DESCRIPTION
+18bbbd31b5a655c7e28a73073b899d32 *DESCRIPTION
 824fc55e9b9deb7adc06ce1af50f6230 *NAMESPACE
-2b2bb6defaa2d725eefd5284c8eccff1 *NEWS.md
-00f3461313a338d755d7dc33662e8194 *R/all_cox.R
+1b7da36df6978de15b0ad349703efb21 *NEWS.md
+1a6ed56aefa9402b85e76202161b14c7 *R/all_cox.R
 4ee072f0be24d1f94144d33e86d60de5 *R/all_glm.R
 4d009e5298a44e4a1bb18365c725e0b5 *R/all_lm.R
 3105cca571bdbcb75eb350fe5a070600 *R/all_plot.R
@@ -12,11 +12,11 @@ d66828e5a1d856286b5a1c3ee3c60fcc *R/all_plot_aic2.R
 d2cd1596a4538c906b1d919b93634481 *R/allestimates.R
 6777f6c5b82f42276a794663ed84c334 *R/data_diab_df.R
 bb292ae60c126c7ce25b3804f4e4ab70 *README.md
-903b561ed39f9ceb850c38ce3838e44f *build/vignette.rds
+542cbb21a776745d29360ecfc2ab5d18 *build/vignette.rds
 2ed49ca71a81b7f5b4352645e83db42a *data/diab_df.rda
 973a7eda1d62ea74fd2053613f59db97 *inst/doc/allestimates-vignette.R
 cd55ce6fc8bfba584f095e83e288f956 *inst/doc/allestimates-vignette.Rmd
-d9bfd9cbcb2fdc6d8127402341287765 *inst/doc/allestimates-vignette.html
+96987677624636b82a2fcab4d0a793df *inst/doc/allestimates-vignette.html
 74810f325928726056674654a3e6b53f *man/all_cox.Rd
 b030f9ca1a66ac8d8f2571a595d2ebfa *man/all_glm.Rd
 49aa10706bce79830454a5f7bb89e559 *man/all_lm.Rd
@@ -26,7 +26,7 @@ aa3df416ebb0e16ed610c47e9b166865 *man/all_plot.Rd
 b195cd6bd5eb6071031a1dfe05434dc9 *man/all_plot_aic2.Rd
 0f972536689a419cbe215b771c1a1ee7 *man/all_speedglm.Rd
 e9c8738b91709a24003ab02a1d8847ba *man/allestimates.Rd
-55318855a6ee1407a0421fcc6a81ef89 *man/diab_df.Rd
+67fdf1c29dd9e107a3b87d36103581df *man/diab_df.Rd
 cb251db8d5c428ecbf5a86bac06f1996 *man/figures/README-all_plot-1.png
 aa611838464fa1da4bcbddff777f4a82 *man/figures/README-all_plot2-1.png
 cd55ce6fc8bfba584f095e83e288f956 *vignettes/allestimates-vignette.Rmd

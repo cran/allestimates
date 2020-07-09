@@ -1,3 +1,6 @@
+# allestates 0.1.7
+*Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
+
 # allestimates 0.1.6
 * corrections in description and removed \dontrun{}. 
 # allestimates 0.1.5
