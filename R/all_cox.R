@@ -49,9 +49,9 @@ all_cox <- function(crude, xlist, data, na_omit = TRUE, ...) {
   md_lst <- lapply(comb_lst, function(x) paste(crude, "+", paste(x, collapse = "+")))
   models <- lapply(md_lst, function(x) coxph(as.formula(x), ..., data = data))
   p <- unlist(lapply(models, function(x) tidy(x)$p.value[1]))
-  estimate <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE)$estimate[1]))
-  conf_low <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE)$conf.low[1]))
-  conf_high <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE)$conf.high[1]))
+  estimate <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE, conf.int = TRUE)$estimate[1]))
+  conf_low <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE, conf.int = TRUE)$conf.low[1]))
+  conf_high <- unlist(lapply(models, function(x) tidy(x, exponentiate = TRUE,  conf.int = TRUE)$conf.high[1]))
   n <- unlist(lapply(models, function(x) broom::glance(x)$n))
   aic <- unlist(lapply(models, function(x) stats::AIC(x)))
   df_coef <- data.frame(

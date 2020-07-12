@@ -1,3 +1,6 @@
+# allestates 0.1.8
+*Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
+
 # allestates 0.1.7
 *Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
 

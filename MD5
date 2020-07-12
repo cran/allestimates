@@ -1,7 +1,7 @@
-18bbbd31b5a655c7e28a73073b899d32 *DESCRIPTION
+b58d8c1e3aba7a5129c0e4fedbaccaea *DESCRIPTION
 824fc55e9b9deb7adc06ce1af50f6230 *NAMESPACE
-1b7da36df6978de15b0ad349703efb21 *NEWS.md
-1a6ed56aefa9402b85e76202161b14c7 *R/all_cox.R
+3b0a5d54787b2f9b1aa943c4c2f5bdf6 *NEWS.md
+5fede3ccf9283fa7bc4919738e6952b3 *R/all_cox.R
 4ee072f0be24d1f94144d33e86d60de5 *R/all_glm.R
 4d009e5298a44e4a1bb18365c725e0b5 *R/all_lm.R
 3105cca571bdbcb75eb350fe5a070600 *R/all_plot.R
@@ -16,7 +16,7 @@ bb292ae60c126c7ce25b3804f4e4ab70 *README.md
 2ed49ca71a81b7f5b4352645e83db42a *data/diab_df.rda
 973a7eda1d62ea74fd2053613f59db97 *inst/doc/allestimates-vignette.R
 cd55ce6fc8bfba584f095e83e288f956 *inst/doc/allestimates-vignette.Rmd
-96987677624636b82a2fcab4d0a793df *inst/doc/allestimates-vignette.html
+0e52ac24fde69eaa054fb196154cc7e4 *inst/doc/allestimates-vignette.html
 74810f325928726056674654a3e6b53f *man/all_cox.Rd
 b030f9ca1a66ac8d8f2571a595d2ebfa *man/all_glm.Rd
 49aa10706bce79830454a5f7bb89e559 *man/all_lm.Rd
