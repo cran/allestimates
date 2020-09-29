@@ -1,3 +1,7 @@
+# allestates 0.1.9
+
+* Fixed an issue of 'speedglm' p values as previously used 'broom::tidy' cannot pick up P values from 'speedglm'. 
+
 # allestates 0.1.8
 *Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
 

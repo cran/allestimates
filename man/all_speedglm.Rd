@@ -34,6 +34,7 @@ models (\code{speedglm}) with all possible combinations of a list of variables
 vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education", "Income")
 results <- all_speedglm(crude = "Endpoint ~ Diabetes", xlist = vlist, data = diab_df)
 results$estimate
+all_plot(results)
 }
 \seealso{
 \pkg{speedglm}

@@ -21,6 +21,7 @@
 #' vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education", "Income")
 #' results <- all_speedglm(crude = "Endpoint ~ Diabetes", xlist = vlist, data = diab_df)
 #' results$estimate
+#' all_plot(results)
 #' @name all_speedglm
 all_speedglm <- function(crude, xlist, data,
                          family = binomial(), na_omit = TRUE, ...) {
@@ -35,7 +36,8 @@ all_speedglm <- function(crude, xlist, data,
     family = family,
     data = data, ...
   )
-  p <- as.numeric(as.character(tidy(mod_0)$p.value[2]))
+###  p <- as.numeric(as.character(tidy(mod_0)$p.value[2]))
+  p <- as.numeric(summary(mod_0)$coefficients$`Pr(>|z|)`[2])
   estimate <- exp(as.numeric(as.character(tidy(mod_0)$estimate[2])))
   conf_low <- exp(as.numeric(as.character(tidy(mod_0, conf.int = TRUE)$conf.low[2])))
   conf_high <- exp(as.numeric(as.character(tidy(mod_0, conf.int = TRUE)$conf.high[2])))
@@ -78,7 +80,8 @@ all_speedglm <- function(crude, xlist, data,
     models,
     function(x) as.character(tidy(x, conf.int = TRUE)$conf.high[2])
   ))
-  p <- unlist(lapply(models, function(x) as.character(tidy(x)$p.value[2])))
+###  p <- unlist(lapply(models, function(x) as.character(tidy(x)$p.value[2])))
+  p <- as.numeric(unlist(lapply(models, function(x) summary(x)$coefficients$`Pr(>|z|)`[2])))
   aic <- unlist(lapply(models, function(x) AIC(x)))
   n <- unlist(lapply(models, function(x) stats::nobs(x)))
   estimate <- exp(as.numeric(OR))
@@ -98,3 +101,4 @@ all_speedglm <- function(crude, xlist, data,
   names(lst_ret) <- c("estimate", "xlist", "fun", "crude", "family")
   lst_ret
 }
+
