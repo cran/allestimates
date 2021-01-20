@@ -18,7 +18,7 @@
 #' @return A list of all effect estimates.
 #' @seealso \pkg{speedglm}
 #' @examples
-#' vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education", "Income")
+#' vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education")
 #' results <- all_speedglm(crude = "Endpoint ~ Diabetes", xlist = vlist, data = diab_df)
 #' results$estimate
 #' all_plot(results)
@@ -36,17 +36,32 @@ all_speedglm <- function(crude, xlist, data,
     family = family,
     data = data, ...
   )
-###  p <- as.numeric(as.character(tidy(mod_0)$p.value[2]))
-  p <- as.numeric(summary(mod_0)$coefficients$`Pr(>|z|)`[2])
-  estimate <- exp(as.numeric(as.character(tidy(mod_0)$estimate[2])))
-  conf_low <- exp(as.numeric(as.character(tidy(mod_0, conf.int = TRUE)$conf.low[2])))
-  conf_high <- exp(as.numeric(as.character(tidy(mod_0, conf.int = TRUE)$conf.high[2])))
+  # use my_tidy to replace broom::tidy
+  my_tidy <- function(x) {
+    estimate <- conf.low <- conf.high <- NULL
+    a_1 <- summary(x)$coefficients %>%
+      tibble::as_tibble(rownames = "term")
+    colnames(a_1) <- c("term", "estimate", "std.error", "statistic", "p.value")
+    a_ci <- stats::confint(x) %>%
+      tibble::as_tibble(rownames = "term")
+    colnames(a_ci) <- c("term", "conf.low", "conf.high")
+    result <- dplyr::left_join(a_1, a_ci, by = "term") %>%
+      mutate(
+        estimate = exp(estimate),
+        conf.low = exp(conf.low),
+        conf.high = exp(conf.high)
+      )
+    result
+  }
+  p <- my_tidy(mod_0)$p.value[2]
+  estimate <- my_tidy(mod_0)$estimate[2]
+  conf_low <- my_tidy(mod_0)$conf.low[2]
+  conf_high <- my_tidy(mod_0)$conf.high[2]
   aic <- AIC(mod_0)
   n <- stats::nobs(mod_0)
   df_0 <- data.frame(
     variables = "Crude",
-    estimate,
-    conf_low, conf_high, p, aic, n
+    estimate, conf_low, conf_high, p, aic, n
   )
   comb_lst <- unlist(lapply(
     seq_along(xlist),
@@ -68,26 +83,27 @@ all_speedglm <- function(crude, xlist, data,
       )
     }
   )
-  OR <- (lapply(
+  estimate <- unlist(lapply(
     models,
-    function(x) as.character(tidy(x)$estimate[2])
+    function(x) {
+      my_tidy(x)$estimate[2]
+    }
   ))
-  lb <- unlist(lapply(
+  conf_low <- unlist(lapply(
     models,
-    function(x) as.character(tidy(x, conf.int = TRUE)$conf.low[2])
+    function(x) {
+      my_tidy(x)$conf.low[2]
+    }
   ))
-  ub <- unlist(lapply(
+  conf_high <- unlist(lapply(
     models,
-    function(x) as.character(tidy(x, conf.int = TRUE)$conf.high[2])
+    function(x) {
+      my_tidy(x)$conf.high[2]
+    }
   ))
-###  p <- unlist(lapply(models, function(x) as.character(tidy(x)$p.value[2])))
-  p <- as.numeric(unlist(lapply(models, function(x) summary(x)$coefficients$`Pr(>|z|)`[2])))
+  p <- unlist(lapply(models, function(x) my_tidy(x)$p.value[2]))
   aic <- unlist(lapply(models, function(x) AIC(x)))
   n <- unlist(lapply(models, function(x) stats::nobs(x)))
-  estimate <- exp(as.numeric(OR))
-  conf_low <- exp(as.numeric(lb))
-  conf_high <- exp(as.numeric(ub))
-  p <- as.numeric(p)
   df_coef <- data.frame(
     variables = comb_str, estimate,
     conf_low, conf_high, p, aic, n
@@ -101,4 +117,3 @@ all_speedglm <- function(crude, xlist, data,
   names(lst_ret) <- c("estimate", "xlist", "fun", "crude", "family")
   lst_ret
 }
-

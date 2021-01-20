@@ -1,11 +1,14 @@
-# allestates 0.1.9
+# allestimates 0.2.0
+Fixed an issue with the new version of 'speedglm' 0.3-3. 'all_speedglm' no longer depends on 'broom' to void this problem. 
+
+# allestimates 0.1.9
 
 * Fixed an issue of 'speedglm' p values as previously used 'broom::tidy' cannot pick up P values from 'speedglm'. 
 
-# allestates 0.1.8
+# allestimates 0.1.8
 *Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
 
-# allestates 0.1.7
+# allestimates 0.1.7
 *Fixed a dependency issue with the new version of 'broom' 0.7.0: 'conf.int = TRUE' added in 'all_cox'. 
 
 # allestimates 0.1.6
