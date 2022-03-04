@@ -14,7 +14,7 @@
 #' @param title \emph{Character} for plot title. Default is \code{"NULL"}.
 #' @return A \pkg{ggplot2} object: scatter plot
 #' @examples
-#' vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
+#' vlist <- c("Age", "Sex", "Income")
 #' results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 #' all_plot(results)
 #' @name all_plot

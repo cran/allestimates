@@ -18,10 +18,12 @@
 #' @return A list of all effect estimates.
 #' @seealso \pkg{speedglm}
 #' @examples
-#' vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education")
+#' \dontrun{
+#' #' vlist <- c("Age", "Sex", "Cancer", "CVD", "Education")
 #' results <- all_speedglm(crude = "Endpoint ~ Diabetes", xlist = vlist, data = diab_df)
 #' results$estimate
 #' all_plot(results)
+#' }
 #' @name all_speedglm
 all_speedglm <- function(crude, xlist, data,
                          family = binomial(), na_omit = TRUE, ...) {
@@ -112,7 +114,7 @@ all_speedglm <- function(crude, xlist, data,
   message(paste("Crude model:", crude))
   estimate <- rbind(df_0, df_coef)
   fun <- "all_speedglm"
-  family <- family$family
+  family <- mod_0$family$family
   lst_ret <- list(estimate, xlist, fun, crude, family)
   names(lst_ret) <- c("estimate", "xlist", "fun", "crude", "family")
   lst_ret

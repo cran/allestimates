@@ -26,7 +26,7 @@ A list of all effect estimates.
 linear models (\code{lm}) with all possible combinations of other variables (potential confounding factors).
 }
 \examples{
-vlist <- c("Age", "Sex", "Cancer", "CVD", "Education", "Income")
+vlist <- c("Age", "Sex", "Income")
 all_lm(crude = "BMI ~ Married", xlist = vlist, data = diab_df)
 }
 \seealso{

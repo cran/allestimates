@@ -15,9 +15,11 @@
 #' @return A list of all effect estimates.
 #' @seealso \pkg{stats}
 #' @examples
+#' \dontrun{
 #' diab_df$Overweight <- as.numeric(diab_df$BMI >= 25)
 #' vlist <- c("Age", "Sex", "Income")
 #' all_glm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
+#' }
 #' @name all_glm
 #'
 all_glm <- function(crude, xlist, data,
@@ -99,9 +101,7 @@ all_glm <- function(crude, xlist, data,
   message(paste("Crude model:", crude))
   estimate <- rbind(df_0, df_coef)
   fun <- "all_glm"
-  if (class(family) == "family") {
-    family <- family$family
-  }
+  family <- mod_0$family$family
   lst_ret <- list(estimate, xlist, fun, crude, family)
   names(lst_ret) <- c("estimate", "xlist", "fun", "crude", "family")
   lst_ret

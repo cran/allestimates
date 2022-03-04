@@ -13,7 +13,7 @@
 #' @return A list of all effect estimates.
 #' @seealso \pkg{lm}
 #' @examples
-#' vlist <- c("Age", "Sex", "Cancer", "CVD", "Education", "Income")
+#' vlist <- c("Age", "Sex", "Income")
 #' all_lm(crude = "BMI ~ Married", xlist = vlist, data = diab_df)
 #' @name all_lm
 all_lm <- function(crude, xlist, data, na_omit = TRUE, ...) {

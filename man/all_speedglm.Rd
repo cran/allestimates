@@ -31,10 +31,12 @@ models (\code{speedglm}) with all possible combinations of a list of variables
 (potential confounding factors) specified in \code{xlist} argument.
 }
 \examples{
-vlist <- c("Age", "Sex", "Married", "Cancer", "CVD", "Education")
+\dontrun{
+#' vlist <- c("Age", "Sex", "Cancer", "CVD", "Education")
 results <- all_speedglm(crude = "Endpoint ~ Diabetes", xlist = vlist, data = diab_df)
 results$estimate
 all_plot(results)
+}
 }
 \seealso{
 \pkg{speedglm}

@@ -1,3 +1,6 @@
+# allestimates 0.2.2
+New maintainer's email address
+
 # allestimates 0.2.0
 Fixed an issue with the new version of 'speedglm' 0.3-3. 'all_speedglm' no longer depends on 'broom' to void this problem. 
 

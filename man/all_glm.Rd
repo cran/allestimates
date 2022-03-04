@@ -29,9 +29,11 @@ generalized linear models (\code{glm}) with all
 possible combinations of a list of variables (potential confounding factors).
 }
 \examples{
+\dontrun{
 diab_df$Overweight <- as.numeric(diab_df$BMI >= 25)
 vlist <- c("Age", "Sex", "Income")
 all_glm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
+}
 }
 \seealso{
 \pkg{stats}

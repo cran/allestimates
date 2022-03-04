@@ -18,9 +18,11 @@
 #' @seealso
 #' \code{surival}
 #' @examples
-#' vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
+#' \dontrun{
+#' vlist <- c("Age", "Sex", "BMI", "Education", "Income")
 #' results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 #' results
+#' }
 #' @name all_cox
 all_cox <- function(crude, xlist, data, na_omit = TRUE, ...) {
   data <- data.frame(c(data[all.vars(as.formula(crude))], data[xlist]))
