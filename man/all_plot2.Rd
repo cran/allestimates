@@ -41,9 +41,7 @@ A \pkg{ggplot2} object: scatter plot
 again p values. Each plot includes effect estimates from all models including a specific variable.
 }
 \examples{
-\dontrun{
-vlist <- c("Age", "Sex", "BMI", "Education", "Income")
+vlist <- c("Age", "Sex", "Married", "BMI", "Income")
 results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 all_plot2(results)
-}
 }

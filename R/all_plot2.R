@@ -15,11 +15,9 @@
 #' @param title \emph{Character} title. Default is \code{"NULL"}.
 #' @return A \pkg{ggplot2} object: scatter plot
 #' @examples
-#' \dontrun{
-#' vlist <- c("Age", "Sex", "BMI", "Education", "Income")
+#' vlist <- c("Age", "Sex", "Married", "BMI", "Income")
 #' results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 #' all_plot2(results)
-#' }
 #' @name all_plot2
 all_plot2 <- function(data,
                       xlabels = c(0, 0.001, 0.01, 0.05, 0.2, 0.5, 1),

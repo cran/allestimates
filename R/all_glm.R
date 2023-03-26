@@ -15,11 +15,9 @@
 #' @return A list of all effect estimates.
 #' @seealso \pkg{stats}
 #' @examples
-#' \dontrun{
 #' diab_df$Overweight <- as.numeric(diab_df$BMI >= 25)
 #' vlist <- c("Age", "Sex", "Income")
 #' all_glm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
-#' }
 #' @name all_glm
 #'
 all_glm <- function(crude, xlist, data,

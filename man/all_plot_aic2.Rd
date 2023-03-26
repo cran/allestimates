@@ -24,9 +24,7 @@ all effect estimates against AIC. Each plot indicates if a specific
 variable is included in the models.
 }
 \examples{
-\dontrun{
-vlist <- c("Age", "Sex", "BMI", "Education", "Income")
+vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
 results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 all_plot_aic(data = results)
-}
 }

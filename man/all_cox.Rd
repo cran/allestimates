@@ -29,11 +29,9 @@ Estimates hazard ratios using Proportional Hazards Regression models
 possible combinations of a list of variables.
 }
 \examples{
-\dontrun{
-vlist <- c("Age", "Sex", "BMI", "Education", "Income")
+vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
 results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 results
-}
 }
 \seealso{
 \code{surival}

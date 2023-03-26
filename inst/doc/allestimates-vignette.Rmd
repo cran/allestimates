@@ -62,22 +62,21 @@ all_plot2(results)
 
 Plot hazard ratios (effect estimates) indicating whether each of those variables included and not included in the model.  
 
-## Calculate odds ratios from all possible models using **`all_glm`** or **`all_speedglm`**
-`all_speedglm` calling `speedglm` is a faster alternative of `all_glm` which calls `glm`. By default, those functions run logistic regressions to calculate odds ratios.   
+## Calculate odds ratios from all possible models using **`all_glm`**
 
-```{r, speedglm_plot, fig.height=2.5, fig.width = 4}
+```{r, glm_plot, fig.height=2.5, fig.width = 4}
 diab_df$Overweight = as.numeric(diab_df$BMI >= 25)
-vlist <- c("Age", "Sex", "Education","Married", "BMI", "Income")
-results <- all_speedglm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
+vlist <- c("Age", "Sex", "Married", "BMI", "Income")
+results <- all_glm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
 all_plot(results)
 ```
-```{r, speedglm_plot2, fig.height=4, fig.width = 7}
+```{r, glm_plot2, fig.height=4, fig.width = 7}
 all_plot2(results)
 ```
 
 In this example, odds ratio estimates appeared in two upper quarters, a positive association with alpha levels less than 0.05 in some models (left-upper) and higher than 0.05 in others. Since different models produce conflicting results, inspecting `all_plot2` can be helpful in combination with biological background knowledge. As we can see the above plot, estimates were in the right-hand side of the vertical line when `BMI` was included in models. In this case, including `BMI` when assessing the association between `Overweight` and `Diabetes` can be problematic because `Overweight` was determined based on `BMI`. 
 
-```{r, speedglm_plot_aic2, fig.height=4, fig.width = 7}
+```{r, glm_plot_aic2, fig.height=4, fig.width = 7}
 all_plot_aic2(results)
 ```
 

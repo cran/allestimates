@@ -11,11 +11,9 @@
 #' @param title \emph{Character} for plot title. Default is \code{"NULL"}.
 #' @return A  \pkg{ggplot2}  object: scatter plot.
 #' @examples
-#' \dontrun{
-#' vlist <- c("Age", "Sex", "BMI", "Education", "Income")
+#' vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
 #' results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 #' all_plot_aic(data = results)
-#' }
 #' @name all_plot_aic2
 all_plot_aic2 <- function(data,
                           xlab = "AIC",

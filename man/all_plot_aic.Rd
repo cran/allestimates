@@ -22,7 +22,7 @@ A \pkg{ggplot2} object: scatter plot
 \code{all_plot_aic()} generates a scatter plot with all effect estimates against AIC.
 }
 \examples{
-vlist <- c("Age", "Sex", "BMI")
+vlist <- c("Age", "Sex", "Married", "BMI", "Education", "Income")
 results <- all_cox(crude = "Surv(t0, t1, Endpoint) ~ Diabetes", xlist = vlist, data = diab_df)
 all_plot_aic(results)
 }

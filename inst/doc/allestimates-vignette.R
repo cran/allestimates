@@ -24,16 +24,16 @@ all_plot(results)
 ## ---- cox_plot2, fig.height=4, fig.width = 7------------------------------------------------------
 all_plot2(results)
 
-## ---- speedglm_plot, fig.height=2.5, fig.width = 4------------------------------------------------
+## ---- glm_plot, fig.height=2.5, fig.width = 4-----------------------------------------------------
 diab_df$Overweight = as.numeric(diab_df$BMI >= 25)
-vlist <- c("Age", "Sex", "Education","Married", "BMI", "Income")
-results <- all_speedglm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
+vlist <- c("Age", "Sex", "Married", "BMI", "Income")
+results <- all_glm(crude = "Diabetes ~ Overweight", xlist = vlist, data = diab_df)
 all_plot(results)
 
-## ---- speedglm_plot2, fig.height=4, fig.width = 7-------------------------------------------------
+## ---- glm_plot2, fig.height=4, fig.width = 7------------------------------------------------------
 all_plot2(results)
 
-## ---- speedglm_plot_aic2, fig.height=4, fig.width = 7---------------------------------------------
+## ---- glm_plot_aic2, fig.height=4, fig.width = 7--------------------------------------------------
 all_plot_aic2(results)
 
 ## ---- lm_plot, fig.height=2.5, fig.width = 4------------------------------------------------------
